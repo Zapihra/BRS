@@ -28,18 +28,22 @@ public class Server {
         
             while(true) {
                 Socket client = se.server.accept();
-                BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                String line = in.readLine();
-                PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-                
+                new Thread(() -> {
 
-                while (!line.equals("0")) {
-                    System.out.println(line);
-                    line = in.readLine();
-                }
+                    try{
+                    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                    String line = in.readLine();
+                    PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+                    
 
-                client.close();
-                
+                    while (!line.equals("0")) {
+                        System.out.println(line);
+                        line = in.readLine();
+                    }
+
+                    client.close();
+                } catch (IOException e) {}
+                }).start();  
             }
             
         } catch (IOException e) {
