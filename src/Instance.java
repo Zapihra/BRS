@@ -6,7 +6,7 @@ public class Instance {
 
     private static Instance instance;
 
-    public synchronized static Instance startReservation() {
+    public static synchronized Instance startReservation() {
         if(instance == null) {
             instance = new Instance();
         }

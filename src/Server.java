@@ -12,7 +12,6 @@ public class Server {
             System.out.println("Server is open");
 
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -20,12 +19,9 @@ public class Server {
     public static void main(String[] args) {
         
         Server se = new Server(8000);
-                
-        System.out.println();
         
         try {
             
-        
             while(true) {
                 Socket client = se.server.accept();
                 new Thread(() -> {
@@ -38,6 +34,22 @@ public class Server {
 
                     while (!line.equals("0")) {
                         System.out.println(line);
+                        switch (line) {
+                            case "1":
+                                break;
+                            case "2":
+                                break;
+                            case "3":
+                                Instance instance = Instance.startReservation();
+                                
+                                Instance instance1 = Instance.startReservation();
+                                
+                                System.out.println(instance + " " + instance1);
+                                
+                                break;
+                            default:
+                                break;
+                        }
                         line = in.readLine();
                     }
 
