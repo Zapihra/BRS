@@ -40,12 +40,11 @@ public class Server {
                             case "2":
                                 break;
                             case "3":
-                                Instance instance = Instance.startReservation();
-                                
-                                Instance instance1 = Instance.startReservation();
+                                Instance instance = Instance.tryReservation();
+                                Instance instance1 = Instance.tryReservation();
                                 
                                 System.out.println(instance + " " + instance1);
-                                
+
                                 break;
                             default:
                                 break;

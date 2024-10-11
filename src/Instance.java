@@ -1,14 +1,14 @@
 public class Instance {
-    // apua singletonin implementoimisesta
-    // https://paulsofts.com/singleton-design-pattern/
 
-    //singleton pattern
+    private static volatile Instance instance;
 
-    private static Instance instance;
-
-    public static synchronized Instance startReservation() {
+    public static Instance tryReservation() {
         if(instance == null) {
-            instance = new Instance();
+            synchronized (Instance.class) {
+                if (instance == null) {
+                    instance = new Instance();
+                }
+            }
         }
         return instance;
     }
