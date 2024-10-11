@@ -29,25 +29,28 @@ public class Server {
                     try{
                     BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                     String line = in.readLine();
-                    PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+                    //PrintWriter out = new PrintWriter(client.getOutputStream(), true);
                     
 
                     while (!line.equals("0")) {
                         System.out.println(line);
                         switch (line) {
-                            case "1":
-                                break;
-                            case "2":
-                                break;
-                            case "3":
+                            case "1" -> {
+                            }
+                            case "2" -> {
+                            }
+                            case "3" -> {
                                 Instance instance = Instance.tryReservation();
                                 Instance instance1 = Instance.tryReservation();
                                 
                                 System.out.println(instance + " " + instance1);
 
-                                break;
-                            default:
-                                break;
+                                Instance.endReservation();
+                                instance1 = Instance.tryReservation();
+                                System.out.println(instance1);
+                            }
+                            default -> {
+                            }
                         }
                         line = in.readLine();
                     }
